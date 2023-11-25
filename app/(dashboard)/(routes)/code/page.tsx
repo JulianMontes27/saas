@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { Code } from "lucide-react";
+import { Code, Divide } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -20,6 +20,8 @@ import Empty from "@/components/non-shadcn/Empty";
 import Loader from "@/components/non-shadcn/Loader";
 import UserAvatar from "@/components/non-shadcn/UserAvatar";
 import BotAvatar from "@/components/non-shadcn/BotAvatar";
+
+import ReactMarkdown from "react-markdown";
 
 const CodePage = () => {
   const router = useRouter();
@@ -132,7 +134,17 @@ const CodePage = () => {
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                {message.content}
+                <ReactMarkdown
+                  components={{
+                    pre: ({ node, ...props }) => (
+                      <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+                        <pre {...props} />
+                      </div>
+                    ),
+                  }}
+                >
+                  {message.content || ""}
+                </ReactMarkdown>
               </div>
             ))}
           </div>
