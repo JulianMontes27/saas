@@ -17,7 +17,9 @@ import { cn } from "@/lib/utils";
 
 import { formSchema } from "./constants";
 import Empty from "@/components/non-shadcn/Empty";
-import Loader from "@/components/non-shadcn/Loader"
+import Loader from "@/components/non-shadcn/Loader";
+import UserAvatar from "@/components/non-shadcn/UserAvatar";
+import BotAvatar from "@/components/non-shadcn/BotAvatar";
 
 const ConversationPage = () => {
   const router = useRouter();
@@ -129,6 +131,7 @@ const ConversationPage = () => {
                     : "bg-muted"
                 )}
               >
+                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                 {message.content}
               </div>
             ))}
