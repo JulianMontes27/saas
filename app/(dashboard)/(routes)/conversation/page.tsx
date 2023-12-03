@@ -35,6 +35,8 @@ const ConversationPage = () => {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
     try {
       const userMessage: ChatCompletionRequestMessage = {
         role: "user",
@@ -42,7 +44,8 @@ const ConversationPage = () => {
       };
 
       const newMessages = [...messages, userMessage];
-
+      
+      //asynchronous API call using Axios to the "/api/image" endpoint with the newMessages array as part of the request payload.
       const response = await axios.post("/api/conversation", {
         messages: newMessages,
       });

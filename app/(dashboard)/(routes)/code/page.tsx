@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { Code, Divide } from "lucide-react";
+import { Code } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -141,9 +141,13 @@ const CodePage = () => {
                         <pre {...props} />
                       </div>
                     ),
+                    code: ({ node, ...props }) => (
+                      <code className="bg-black/10 rounded-lg p-1" {...props} />
+                    ),
                   }}
+                  className={"text-sm overflow-hidden leading-7"}
                 >
-                  {message.content || ""}
+                  {message.content || " "}
                 </ReactMarkdown>
               </div>
             ))}
